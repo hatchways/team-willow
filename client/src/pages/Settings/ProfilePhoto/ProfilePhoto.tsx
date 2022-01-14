@@ -4,19 +4,22 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import useStyles from './useStyles';
 import AuthPageWrapper from '../../../components/AuthPageWrapper/AuthPageWrapper';
-import PageContainer from '../../../components/PageContainer/PageContainer';
 import { Typography } from '@mui/material';
-import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
 
 const Input = styled('input')({
   display: 'none',
 });
+interface ProfilePhotoProps {
+  header: string;
+}
 
-const ProfilePhoto = (): JSX.Element => {
+const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ header }) => {
   const classes = useStyles();
   return (
-    <PageContainer>
+    <>
+      <SettingHeader header={header} />
       <AuthPageWrapper header="Profile Photo">
         <Box textAlign="center">
           <Box className={classes.imageCropper}>
@@ -47,7 +50,7 @@ const ProfilePhoto = (): JSX.Element => {
           </Button>
         </Box>
       </AuthPageWrapper>
-    </PageContainer>
+    </>
   );
 };
 
