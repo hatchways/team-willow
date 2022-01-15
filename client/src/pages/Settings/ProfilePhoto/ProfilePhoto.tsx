@@ -34,10 +34,8 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ header }) => {
         <Box className={classes.input}>
           <FormLabel htmlFor="contained-button-file">
             <Input accept="image/*" id="contained-button-file" multiple type="file" />
-            <Button variant="outlined" component="span" fullWidth>
-              <Typography variant="h6" className={classes.btnTxt}>
-                Upload a file from your device
-              </Typography>
+            <Button variant="outlined" component="span" sx={{ textTransform: 'none', fontSize: 16, py: 2, px: 5 }}>
+              Upload a file from your device
             </Button>
           </FormLabel>
         </Box>

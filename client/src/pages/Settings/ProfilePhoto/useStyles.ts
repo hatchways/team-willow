@@ -24,9 +24,5 @@ const useStyles = makeStyles(() => ({
   input: {
     margin: '50px auto',
   },
-  btnTxt: {
-    textTransform: 'none',
-    padding: 10,
-  },
 }));
 export default useStyles;
