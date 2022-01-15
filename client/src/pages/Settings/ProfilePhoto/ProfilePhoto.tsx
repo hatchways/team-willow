@@ -7,6 +7,7 @@ import { Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FormLabel from '@mui/material/FormLabel';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
+import profileImage from '../../../images/profile/mock-image.jpg';
 
 const Input = styled('input')({
   display: 'none',
@@ -22,11 +23,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ header }) => {
       <SettingHeader header={header} />
       <Box textAlign="center">
         <Box className={classes.imageCropper}>
-          <img
-            className={classes.img}
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-            alt="Profile Photo"
-          />
+          <img className={classes.img} src={profileImage} alt="Profile Photo" />
         </Box>
         <Typography variant="body1" className={classes.txt}>
           Be sure to use a photo that <br /> clearly shows your face
