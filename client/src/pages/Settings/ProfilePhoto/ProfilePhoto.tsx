@@ -6,6 +6,7 @@ import useStyles from './useStyles';
 import AuthPageWrapper from '../../../components/AuthPageWrapper/AuthPageWrapper';
 import { Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import FormLabel from '@mui/material/FormLabel';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
 
 const Input = styled('input')({
@@ -33,14 +34,14 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ header }) => {
             Be sure to use a photo that <br /> clearly shows your face
           </Typography>
           <Box className={classes.input}>
-            <label htmlFor="contained-button-file">
+            <FormLabel htmlFor="contained-button-file">
               <Input accept="image/*" id="contained-button-file" multiple type="file" />
               <Button variant="outlined" component="span" fullWidth>
                 <Typography variant="h6" className={classes.btnTxt}>
                   Upload a file from your device
                 </Typography>
               </Button>
-            </label>
+            </FormLabel>
           </Box>
           <Button aria-label="delete">
             <DeleteIcon sx={{ mr: 1, color: 'black' }} />
