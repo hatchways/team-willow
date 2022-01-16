@@ -33,7 +33,8 @@ const users = [
   },
   {
     id: 3,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://media.istockphoto.com/photos/beautiful-woman-and-her-dog-in-park-picture-id1207034859?b=1&k=20&m=1207034859&s=170667a&w=0&h=paQF_IEEJiYcSR_pFr_kdZpGfZDGqMp0vEak_Dxl5kQ=',
     name: 'Jessica Pearson',
     occupation: 'Dog care helper',
     rating: 5,
@@ -43,7 +44,8 @@ const users = [
   },
   {
     id: 4,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://images.unsplash.com/photo-1489440543286-a69330151c0b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlJTIwd2l0aCUyMHBldHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
     name: 'Norma Byers',
     occupation: 'Loving pet sitter',
     rating: 4,
@@ -53,7 +55,8 @@ const users = [
   },
   {
     id: 5,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://images.unsplash.com/photo-1517125591588-3a29b2182219?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHBlb3BsZSUyMHdpdGglMjBwZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
     name: 'Michael Carnahan',
     occupation: 'Professional dog trainer',
     rating: 5,
@@ -63,7 +66,8 @@ const users = [
   },
   {
     id: 6,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://images.unsplash.com/photo-1525983360072-2ebda055ba40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBlb3BsZSUyMHdpdGglMjBwZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
     name: 'Jessica Pearson',
     occupation: 'Dog care helper',
     rating: 5,

@@ -2,17 +2,20 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
   cardMedia: {
-    width: 250,
+    maxWidth: 250,
     height: 250,
     position: 'relative',
     overflow: 'hidden',
     borderRadius: '50%',
-    margin: '0 auto',
+    margin: '50px auto 10px auto',
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
   userImage: {
-    display: 'inline',
-    height: '100%',
     margin: '0 auto',
+    height: '100%',
+    width: '100%',
   },
 }));
 

@@ -2,12 +2,12 @@ import React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import useStyles from './useStyles';
+import { Box } from '@mui/material';
 interface UserDetailsProps {
   user: {
     id: number;
@@ -29,9 +29,9 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
   return (
     <Grid item xs={12} sm={4} md={4}>
       <Card sx={{ maxWidth: 550, margin: 'auto' }}>
-        <CardMedia className={classes.cardMedia}>
-          <img src={image} alt="Profile Image" width="100%" className={classes.userImage} />
-        </CardMedia>
+        <Box className={classes.cardMedia}>
+          <img src={image} alt="Profile Image" className={classes.userImage} />
+        </Box>
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
             {name}
@@ -47,10 +47,14 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
           </Typography>
         </CardContent>
         <Divider />
-        <CardActions>
-          <Button size="small">{city}</Button>
-          <Button size="small">{rate}</Button>
-        </CardActions>
+        <Box>
+          <Typography variant="body2" color="text.secondary">
+            {city}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            ${rate}/hr
+          </Typography>
+        </Box>
       </Card>
     </Grid>
   );
