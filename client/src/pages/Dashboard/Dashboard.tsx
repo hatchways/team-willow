@@ -4,11 +4,14 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import { CircularProgress, Grid, Typography } from '@mui/material';
 import PageContainer from '../../components/PageContainer/PageContainer';
+import UserDetails from './UserDetails/UserDetails';
 
 //mock user data
+
 const users = [
   {
     id: 1,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Norma Byers',
     occupation: 'Loving pet sitter',
     rating: 4,
@@ -18,6 +21,7 @@ const users = [
   },
   {
     id: 2,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Michael Carnahan',
     occupation: 'Professional dog trainer',
     rating: 5,
@@ -27,6 +31,7 @@ const users = [
   },
   {
     id: 3,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Jessica Pearson',
     occupation: 'Dog care helper',
     rating: 5,
@@ -35,7 +40,8 @@ const users = [
     city: 'Toronto, Ontario',
   },
   {
-    id: 1,
+    id: 4,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Norma Byers',
     occupation: 'Loving pet sitter',
     rating: 4,
@@ -44,7 +50,8 @@ const users = [
     city: 'Toronto, Ontario',
   },
   {
-    id: 2,
+    id: 5,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Michael Carnahan',
     occupation: 'Professional dog trainer',
     rating: 5,
@@ -53,7 +60,8 @@ const users = [
     city: 'Toronto, Ontario',
   },
   {
-    id: 3,
+    id: 6,
+    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
     name: 'Jessica Pearson',
     occupation: 'Dog care helper',
     rating: 5,
@@ -62,6 +70,7 @@ const users = [
     city: 'Toronto, Ontario',
   },
 ];
+
 export default function Dashboard(): JSX.Element {
   const { loggedInUser } = useAuth();
   const { initSocket } = useSocket();
@@ -85,6 +94,11 @@ export default function Dashboard(): JSX.Element {
           <Typography sx={{ textAlign: 'center' }} variant="h4">
             Search Profiles
           </Typography>
+          <Grid sx={{ textAlign: 'center' }} container spacing={{ xs: 2, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+            {users.map((user) => (
+              <UserDetails key={user.id} user={user}></UserDetails>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
     </PageContainer>
