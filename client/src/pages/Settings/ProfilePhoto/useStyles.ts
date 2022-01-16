@@ -7,14 +7,10 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     overflow: 'hidden',
     borderRadius: '50%',
-    margin: '50px auto',
-  },
-  img: {
-    display: 'inline',
-    margin: '0px auto',
-    marginLeft: '-25%', //centers the image
-    height: '100%',
-    width: 'auto',
+    margin: '0 auto',
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 50,
   },
   txt: {
     textAlign: 'center',

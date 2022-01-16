@@ -23,7 +23,7 @@ const ProfilePhoto: React.FC<ProfilePhotoProps> = ({ header }) => {
       <SettingHeader header={header} />
       <Box textAlign="center">
         <Box className={classes.imageCropper}>
-          <img className={classes.img} src={profileImage} alt="Profile Photo" />
+          <img src={profileImage} alt="Profile Photo" width="auto" height="100%" />
         </Box>
         <Typography variant="body1" className={classes.txt}>
           Be sure to use a photo that <br /> clearly shows your face
