@@ -11,7 +11,8 @@ import UserDetails from './UserDetails/UserDetails';
 const users = [
   {
     id: 1,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://media.istockphoto.com/photos/portrait-young-woman-with-laughing-corgi-puppy-nature-background-picture-id1276788283?b=1&k=20&m=1276788283&s=170667a&w=0&h=X3dRalkRRGigR2q58t19R8U89CFjmxlRwWC4Y0sPbD8=',
     name: 'Norma Byers',
     occupation: 'Loving pet sitter',
     rating: 4,
@@ -21,7 +22,8 @@ const users = [
   },
   {
     id: 2,
-    image: 'https://colfecarga.com/taxi/assets/pages/media/profile/profile_user.jpg',
+    image:
+      'https://media.istockphoto.com/photos/woman-cuddling-with-her-dog-picture-id912760940?b=1&k=20&m=912760940&s=170667a&w=0&h=VpqWZcfjg1WpYlHpFddp5U0X6FjnK_s6JDs6JI2j5ag=',
     name: 'Michael Carnahan',
     occupation: 'Professional dog trainer',
     rating: 5,

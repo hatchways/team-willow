@@ -29,14 +29,9 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
   return (
     <Grid item xs={12} sm={4} md={4}>
       <Card sx={{ maxWidth: 550, margin: 'auto' }}>
-        <CardMedia
-          component="img"
-          alt="Profile Image"
-          height="auto"
-          image={image}
-          width="100%"
-          className={classes.cardMedia}
-        />
+        <CardMedia className={classes.cardMedia}>
+          <img src={image} alt="Profile Image" width="100%" className={classes.userImage} />
+        </CardMedia>
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
             {name}
