@@ -12,6 +12,7 @@ import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 import { Navbar } from './components/Navbar/Navbar';
 import Settings from './pages/Settings/Settings';
+import ManageBooking from './pages/ManageBookings/ManageBooking';
 import NotFound from './pages/NotFound/NotFound';
 
 function App(): JSX.Element {
@@ -28,6 +29,7 @@ function App(): JSX.Element {
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route path="/profile/settings" component={Settings} />
+                <Route path="/manage-bookings" component={ManageBooking} />
                 <Route path="*">
                   <NotFound />
                 </Route>
