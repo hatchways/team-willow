@@ -16,21 +16,21 @@ function Booking(): JSX.Element {
   const classes = useStyles();
   return (
     <Grid display={'flex'} flexDirection={'column'} className={classes.bookingComponent} flexWrap={'nowrap'}>
-      <Grid display={'flex'} className={classes.bookings}>
-        <Typography variant="subtitle1" className={'classes.bookingTitleDate'}>
+      <Grid display={'flex'} flexDirection={'row'} className={classes.bookings}>
+        <Typography variant="h6" className={classes.bookingTitleDate}>
           5 April 2020, 10-12 AM
         </Typography>
-        <IconButton aria-label="settings" className={'classes.bookingIcon'}>
+        <IconButton aria-label="settings" className={classes.bookingIcon}>
           <SettingsIcon />
         </IconButton>
       </Grid>
-      <Grid flexDirection={'row'} width={'90%'} mx="auto">
-        <Avatar alt="userImage" src={userImage} className={classes.bookingAvatar} />
+      <Grid display={'flex'} flexDirection={'row'} width={'90%'} mx="auto" className={classes.bookingContainer}>
+        <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
         <Typography variant="h6" className={classes.bookingAvatarName}>
           Norma Byers
         </Typography>
         <Typography variant="h6" className={classes.bookingAvatarStatus}>
-          Accepted
+          ACCEPTED
         </Typography>
       </Grid>
     </Grid>
@@ -48,15 +48,37 @@ export default function ManageBooking(): JSX.Element {
           <Grid>
             <Box display="flex" flexDirection={'column'}>
               <Paper component={'div'} className={classes.paper}>
-                <Typography variant="h6" display="block" gutterBottom className={classes.bookingTitle}>
+                <Typography variant="h6" gutterBottom className={classes.bookingTitle}>
                   Your next Booking
                 </Typography>
-                <Booking />
+                <IconButton aria-label="settings" className={classes.nextBookingIcon}>
+                  <SettingsIcon />
+                </IconButton>
+                <Grid display={'flex'} flexDirection={'row'} className={classes.bookings}>
+                  <Typography variant="h6" className={classes.bookingTitleDate}>
+                    5 April 2020, 10-12 AM
+                  </Typography>
+                </Grid>
+                <Grid
+                  display={'flex'}
+                  flexDirection={'row'}
+                  width={'90%'}
+                  mx="auto"
+                  className={classes.bookingContainer}
+                >
+                  <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
+                  <Typography variant="h6" className={classes.bookingAvatarName}>
+                    Norma Byers
+                  </Typography>
+                  <Typography variant="h6" className={classes.bookingAvatarStatus}>
+                    ACCEPTED
+                  </Typography>
+                </Grid>
               </Paper>
             </Box>
           </Grid>
           <br />
-          <Grid className={classes.currentBookingContainer}>
+          <Grid>
             <Paper elevation={3} className={classes.paper}>
               <Typography variant="h6" display="block" gutterBottom className={classes.bookingTitle}>
                 Current Bookings:
@@ -66,7 +88,7 @@ export default function ManageBooking(): JSX.Element {
                   width: '100%',
                   position: 'relative',
                   overflow: 'auto',
-                  maxHeight: 500,
+                  maxHeight: 600,
                 }}
               >
                 <Booking />

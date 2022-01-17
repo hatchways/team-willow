@@ -9,29 +9,33 @@ const useStyles = makeStyles({
     margin: 15,
   },
   bookings: {
-    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
   },
   bookingTitle: {
-    paddingInline: 15,
-    paddingTop: 15,
+    display: 'inline',
+    paddingTop: 20,
+    paddingLeft: 20,
   },
   bookingTitleDate: {
-    margin: 15,
+    padding: 15,
   },
   bookingIcon: {
     justifyContent: 'flex-end',
+    bottom: 5,
+    left: 5,
   },
+  bookingContainer: {},
   bookingAvatar: {
-    padding: 5,
+    bottom: 10,
   },
   bookingAvatarName: {
-    padding: 5,
+    paddingLeft: 10,
   },
   bookingAvatarStatus: {
     color: 'grey',
-  },
-  currentBookingContainer: {
-    height: '45%',
+    paddingLeft: 150,
+    paddingBottom: 20,
   },
   paper: {
     paddingLeft: 5,
@@ -39,7 +43,12 @@ const useStyles = makeStyles({
   },
   calender: {
     display: 'flex',
-    width: 'inherit',
+  },
+  nextBookingContainer: {},
+  nextBookingIcon: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    right: 0,
   },
 });
 
