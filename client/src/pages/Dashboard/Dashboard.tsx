@@ -59,7 +59,7 @@ const users = [
       'https://images.unsplash.com/photo-1517125591588-3a29b2182219?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHBlb3BsZSUyMHdpdGglMjBwZXR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
     name: 'Michael Carnahan',
     occupation: 'Professional dog trainer',
-    rating: 5,
+    rating: 3,
     description: 'I would love to work with your dog',
     rate: 20,
     city: 'Toronto, Ontario',
@@ -100,7 +100,12 @@ export default function Dashboard(): JSX.Element {
           <Typography sx={{ textAlign: 'center' }} variant="h4">
             Search Profiles
           </Typography>
-          <Grid sx={{ textAlign: 'center' }} container spacing={{ xs: 2, md: 5 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+          <Grid
+            sx={{ textAlign: 'center', mx: 5 }}
+            container
+            spacing={{ xs: 2, md: 5 }}
+            columns={{ xs: 4, sm: 8, md: 12 }}
+          >
             {users.map((user) => (
               <UserDetails key={user.id} user={user}></UserDetails>
             ))}

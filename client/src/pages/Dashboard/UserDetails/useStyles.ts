@@ -1,7 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
-  cardMedia: {
+  imageCropper: {
     maxWidth: 250,
     height: 250,
     position: 'relative',

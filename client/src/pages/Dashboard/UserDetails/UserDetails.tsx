@@ -1,13 +1,14 @@
 import React from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
+import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
 import useStyles from './useStyles';
 import { Box } from '@mui/material';
+import Rating from '@mui/material/Rating';
+import StarIcon from '@mui/icons-material/Star';
 interface UserDetailsProps {
   user: {
     id: number;
@@ -25,30 +26,54 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
   const { image, name, occupation, rating, description, rate, city } = user;
 
   const classes = useStyles();
+  let ratingStar = 0;
+  if (rating === 5) {
+    ratingStar = 5;
+  } else if (rating === 4) {
+    ratingStar = 4;
+  } else if (rating === 3) {
+    ratingStar = 3;
+  } else if (rating === 2) {
+    ratingStar = 2;
+  } else if (rating === 1) {
+    ratingStar = 1;
+  } else {
+    ratingStar === ratingStar;
+  }
 
   return (
     <Grid item xs={12} sm={4} md={4}>
-      <Card sx={{ maxWidth: 550, margin: 'auto' }}>
-        <Box className={classes.cardMedia}>
-          <img src={image} alt="Profile Image" className={classes.userImage} />
+      <Card
+        sx={{
+          maxWidth: 550,
+          margin: 'auto',
+          backgroundColor: '#fff',
+          borderRadius: 2,
+          boxShadow:
+            '0px 0px 1.9px rgba(0, 0, 0, 0.007),0px 0px 4.9px rgba(0, 0, 0, 0.014),0px 0px 9.9px rgba(0, 0, 0, 0.021),0px 0px 20.4px rgba(0, 0, 0, 0.031),0px 0px 56px rgba(0, 0, 0, 0.05)',
+        }}
+      >
+        <Box className={classes.imageCropper}>
+          <CardMedia component="img" image={image} alt="Profile Image" className={classes.userImage} />
         </Box>
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
             {name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             {occupation}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {rating}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
+          <Rating
+            name="read-only"
+            value={ratingStar}
+            readOnly
+            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+          />
+          <Typography variant="h5">{description}</Typography>
         </CardContent>
         <Divider />
         <Box>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body1" color="text.secondary">
             {city}
           </Typography>
           <Typography variant="body2" color="text.secondary">
