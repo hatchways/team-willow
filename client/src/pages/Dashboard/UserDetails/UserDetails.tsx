@@ -9,6 +9,7 @@ import useStyles from './useStyles';
 import { Box } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 interface UserDetailsProps {
   user: {
     id: number;
@@ -46,6 +47,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
       <Card
         sx={{
           maxWidth: 550,
+          minHeight: 600,
           margin: 'auto',
           backgroundColor: '#fff',
           borderRadius: 2,
@@ -57,26 +59,32 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
           <CardMedia component="img" image={image} alt="Profile Image" className={classes.userImage} />
         </Box>
         <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant="h4" component="div" sx={{ fontWeight: 700 }}>
             {name}
           </Typography>
           <Typography variant="body1" color="text.secondary">
             {occupation}
           </Typography>
           <Rating
+            sx={{ my: 2 }}
             name="read-only"
             value={ratingStar}
             readOnly
             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
           />
-          <Typography variant="h5">{description}</Typography>
+          <Typography variant="h5" sx={{ mb: 3 }}>
+            {description}
+          </Typography>
         </CardContent>
         <Divider />
-        <Box>
-          <Typography variant="body1" color="text.secondary">
-            {city}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
+        <Box className={classes.cardFooter}>
+          <Box className={classes.iconSeting}>
+            <LocationOnIcon className={classes.icon} sx={{ mr: 1 }} />
+            <Typography variant="body1" color="text.secondary">
+              {city}
+            </Typography>
+          </Box>
+          <Typography variant="h5" sx={{ fontWeight: 700 }}>
             ${rate}/hr
           </Typography>
         </Box>

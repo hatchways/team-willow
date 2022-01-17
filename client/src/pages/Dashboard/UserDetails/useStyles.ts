@@ -17,6 +17,19 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     width: '100%',
   },
+  cardFooter: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 30,
+  },
+  iconSeting: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  icon: {
+    color: '#f14140',
+  },
 }));
 
 export default useStyles;
