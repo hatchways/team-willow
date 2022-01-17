@@ -41,8 +41,12 @@ const useStyles = makeStyles({
     paddingLeft: 5,
     paddingBottom: 0,
   },
-  calender: {
-    display: 'flex',
+  calendar: {
+    width: '80%',
+    borderRadius: 10,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    boxShadow: '2px 2px 5px 2px',
   },
   nextBookingContainer: {},
   nextBookingIcon: {

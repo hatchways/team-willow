@@ -1,4 +1,3 @@
-import CalendarPicker from '@mui/lab/CalendarPicker';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import Typography from '@mui/material/Typography';
@@ -11,6 +10,8 @@ import userImage from '../../images/userProfilePic.jpeg';
 import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import List from '@mui/material/List';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 function Booking(): JSX.Element {
   const classes = useStyles();
@@ -40,7 +41,7 @@ function Booking(): JSX.Element {
 export default function ManageBooking(): JSX.Element {
   const classes = useStyles();
 
-  const date = new Date('2020-01-01T00:00:00.000');
+  const date = new Date();
   return (
     <Box display={'flex'} mx="auto" justifyContent={'center'} width={'90%'} padding={2.5}>
       <Grid container spacing={5} direction="row">
@@ -106,10 +107,10 @@ export default function ManageBooking(): JSX.Element {
             </Paper>
           </Grid>
         </Grid>
-        <Grid item xs={7} className={classes.calender}>
+        <Grid item xs={7}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <Grid item width="100%">
-              <CalendarPicker date={date} onChange={() => console.log('change detected!')} />
+              <Calendar className={classes.calendar} value={date} />
             </Grid>
           </LocalizationProvider>
         </Grid>
