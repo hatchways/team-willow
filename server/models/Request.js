@@ -11,18 +11,6 @@ const requestSchema = new mongoose.Schema({
         required: true,
         ref: 'User',
     },
-    date: { 
-        type: Date, 
-        required: true
-    },
-    start: { 
-        type: String, 
-        required: true,
-    },
-    end: { 
-        type: String, 
-        required: true,
-    },
     accepted: { 
         type: Boolean,
         default: false,
