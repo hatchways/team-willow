@@ -84,9 +84,7 @@ export default function Register(): JSX.Element {
     <PageContainer>
       <AuthPageWrapper header="Sign up">
         <SignUpForm handleSubmit={handleSubmit} />
-        <Box>
-          <DemoSignUp />
-        </Box>
+        <DemoSignUp />
         <AuthPageFooter text="Already a member?" anchorText="Login" anchorTo="/login" />
       </AuthPageWrapper>
     </PageContainer>

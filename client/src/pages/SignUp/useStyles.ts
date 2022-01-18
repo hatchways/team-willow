@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
     textTransform: 'uppercase',
-    left: 75,
+    left: 95,
+    top: 15,
   },
 }));
 
