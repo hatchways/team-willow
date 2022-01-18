@@ -6,6 +6,53 @@ import { useSnackBar } from '../../context/useSnackbarContext';
 import PageContainer from '../../components/PageContainer/PageContainer';
 import AuthPageWrapper from '../../components/AuthPageWrapper/AuthPageWrapper';
 import AuthPageFooter from '../../components/AuthPageFooter/AuthPageFooter';
+import Button from '@mui/material/Button';
+import { FetchOptions } from '../../interface/FetchOptions';
+import useStyles from './useStyles';
+
+function DemoLogin(): JSX.Element {
+  const { updateLoginContext } = useAuth();
+  const { updateSnackBarMessage } = useSnackBar();
+  const classes = useStyles();
+
+  const handleSubmit = async () => {
+    const fetchOptions: FetchOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    };
+    return await fetch(`/auth/demo/login`, fetchOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          updateSnackBarMessage(data.error.message);
+        } else if (data.success) {
+          updateSnackBarMessage(data.success);
+          updateLoginContext(data.success);
+        } else {
+          console.log({ data });
+          updateSnackBarMessage('unexpected error occurred!');
+        }
+      })
+      .catch(() => ({
+        error: { message: 'Unable to connect to server. Please try again' },
+      }));
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <Button
+        className={classes.demoButton}
+        type="submit"
+        size="large"
+        variant="contained"
+        color="primary"
+        disableElevation
+      >
+        Demo Login
+      </Button>
+    </form>
+  );
+}
 
 export default function Login(): JSX.Element {
   const { updateLoginContext } = useAuth();
@@ -35,6 +82,7 @@ export default function Login(): JSX.Element {
     <PageContainer>
       <AuthPageWrapper header="Log in">
         <LoginForm handleSubmit={handleSubmit} />
+        <DemoLogin />
         <AuthPageFooter text="Not a member?" anchorText="Sign up" anchorTo="/signup" />
       </AuthPageWrapper>
     </PageContainer>
