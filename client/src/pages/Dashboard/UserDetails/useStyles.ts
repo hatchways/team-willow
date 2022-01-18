@@ -1,6 +1,7 @@
 import { makeStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   imageCropper: {
     maxWidth: 250,
     height: 250,
@@ -28,7 +29,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
   },
   icon: {
-    color: '#f14140',
+    color: theme.palette.primary.main,
   },
 }));
 
