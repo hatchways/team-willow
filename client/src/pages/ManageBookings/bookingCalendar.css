@@ -32,4 +32,12 @@
   font-style: bold;
   font-weight: 800;
   font-size: large;
+  color: #f14140;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: black;
+}
+.react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
 }

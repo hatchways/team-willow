@@ -34,7 +34,6 @@ const useStyles = makeStyles({
   },
   bookingAvatarStatus: {
     color: 'grey',
-    paddingLeft: 150,
     paddingBottom: 20,
   },
   paper: {

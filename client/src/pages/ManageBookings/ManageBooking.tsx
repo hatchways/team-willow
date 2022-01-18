@@ -18,7 +18,7 @@ function Booking(): JSX.Element {
   const classes = useStyles();
   return (
     <Grid display={'flex'} flexDirection={'column'} className={classes.bookingComponent} flexWrap={'nowrap'}>
-      <Grid display={'flex'} flexDirection={'row'} className={classes.bookings}>
+      <Grid container direction="row" justifyContent="space-between" className={classes.bookings} alignItems={'center'}>
         <Typography variant="h6" className={classes.bookingTitleDate}>
           5 April 2020, 10-12 AM
         </Typography>
@@ -27,10 +27,12 @@ function Booking(): JSX.Element {
         </IconButton>
       </Grid>
       <Grid display={'flex'} flexDirection={'row'} width={'90%'} mx="auto" className={classes.bookingContainer}>
-        <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
-        <Typography variant="h6" className={classes.bookingAvatarName}>
-          Norma Byers
-        </Typography>
+        <Grid container direction={'row'} justifyContent={'flex-start'}>
+          <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
+          <Typography variant="h6" className={classes.bookingAvatarName}>
+            Norma Byers
+          </Typography>
+        </Grid>
         <Typography variant="h6" className={classes.bookingAvatarStatus}>
           ACCEPTED
         </Typography>
@@ -50,12 +52,20 @@ export default function ManageBooking(): JSX.Element {
           <Grid>
             <Box display="flex" flexDirection={'column'}>
               <Paper component={'div'} className={classes.paper}>
-                <Typography variant="h6" gutterBottom className={classes.bookingTitle}>
-                  Your next Booking
-                </Typography>
-                <IconButton aria-label="settings" className={classes.nextBookingIcon}>
-                  <SettingsIcon />
-                </IconButton>
+                <Grid
+                  container
+                  direction="row"
+                  justifyContent="space-between"
+                  className={classes.bookings}
+                  alignItems={'center'}
+                >
+                  <Typography variant="h6" gutterBottom className={classes.bookingTitle}>
+                    Your next Booking
+                  </Typography>
+                  <IconButton aria-label="settings" className={classes.nextBookingIcon}>
+                    <SettingsIcon />
+                  </IconButton>
+                </Grid>
                 <Grid display={'flex'} flexDirection={'row'} className={classes.bookings}>
                   <Typography variant="h6" className={classes.bookingTitleDate}>
                     5 April 2020, 10-12 AM
@@ -68,10 +78,12 @@ export default function ManageBooking(): JSX.Element {
                   mx="auto"
                   className={classes.bookingContainer}
                 >
-                  <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
-                  <Typography variant="h6" className={classes.bookingAvatarName}>
-                    Norma Byers
-                  </Typography>
+                  <Grid container direction={'row'} justifyContent={'flex-start'}>
+                    <Avatar alt="userImage" src={userImage} variant={'circular'} className={classes.bookingAvatar} />
+                    <Typography variant="h6" className={classes.bookingAvatarName}>
+                      Norma Byers
+                    </Typography>
+                  </Grid>
                   <Typography variant="h6" className={classes.bookingAvatarStatus}>
                     ACCEPTED
                   </Typography>
@@ -110,7 +122,7 @@ export default function ManageBooking(): JSX.Element {
         </Grid>
         <Grid item xs={7}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Grid item width="100%" position={'relative'}>
+            <Grid container width="100%">
               <Calendar className={classes.calendar} value={date} />
             </Grid>
           </LocalizationProvider>
