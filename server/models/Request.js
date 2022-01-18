@@ -4,14 +4,16 @@ const requestSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'User',
     },
     sitterId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'User',
     },
     date: { 
         type: Date, 
-        required: true
+        required: true,
     },
     start: { 
         type: String, 
@@ -35,4 +37,4 @@ const requestSchema = new mongoose.Schema({
     },
 });
 
-module.exports = Request = mongoose.model("Request", requestSchema); 
+module.exports = Request = mongoose.model("Request", requestSchema);

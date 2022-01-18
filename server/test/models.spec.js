@@ -10,10 +10,10 @@ chai.use(chaiHttp);
 describe("Request model", function() {
     let start, end, token, currentDate, userId, sitterId;
     before(function() {
-        currentDate = new Date();
+        currentDate = new Date().toDateString();
         token = `token=${process.env.TOKEN}`;
         userId = "61e450c524ae3676e5670ae1";
-        sitterId = "61e4514a24ae3676e5670ae7"
+        sitterId = "61e4514a24ae3676e5670ae7";
         start = new Date(2022,0,14, 10,30).toTimeString();
         end = new Date(2022,0,14, 18,30).toTimeString();
     })
@@ -60,8 +60,8 @@ describe("Request model", function() {
     })
       .end(function(err, res) {
           expect(res).to.have.status(200);
-          expect(res.body.savedRequest.accepted).to.be.equal(true);
-          expect(res.body.savedRequest.declined).to.be.equal(true);
+          expect(res.body.updatedRequest.accepted).to.be.equal(true);
+          expect(res.body.updatedRequest.declined).to.be.equal(true);
           done();
       })
   })
