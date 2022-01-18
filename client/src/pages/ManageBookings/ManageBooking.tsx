@@ -12,6 +12,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import List from '@mui/material/List';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import './bookingCalendar.css';
 
 function Booking(): JSX.Element {
   const classes = useStyles();
@@ -109,7 +110,7 @@ export default function ManageBooking(): JSX.Element {
         </Grid>
         <Grid item xs={7}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <Grid item width="100%">
+            <Grid item width="100%" position={'relative'}>
               <Calendar className={classes.calendar} value={date} />
             </Grid>
           </LocalizationProvider>
