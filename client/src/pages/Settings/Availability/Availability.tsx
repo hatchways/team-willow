@@ -96,7 +96,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
     setEndtTime(event.target.value);
   };
   return (
-    <Container>
+    <>
       <SettingHeader header={header} />
       <Box>
         <Box className={classes.heading}>
@@ -156,7 +156,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
           </Table>
         </TableContainer>
       </Box>
-    </Container>
+    </>
   );
 };
 
