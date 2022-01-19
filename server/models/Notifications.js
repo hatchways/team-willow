@@ -4,7 +4,7 @@ const notificationsSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: ['Booking', 'Message', 'System', 'Promo'],
-        required: [true, "Wrong type."],
+        required: true,
     },
     title: {
         type: String,
@@ -19,10 +19,10 @@ const notificationsSchema = new mongoose.Schema({
         default: false,
     },
     date: {
-        type: Date,
-        default: Date.now(),
+        type: String,
+        default: new Date().toDateString(),
     }
-})
+});
 
 module.exports = Notification = mongoose.model("notification", notificationsSchema);
 
