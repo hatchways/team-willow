@@ -2,7 +2,7 @@ import React from 'react';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import useStyles from './useStyles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
 interface AvailibilityProps {
   header: string;
@@ -76,7 +77,7 @@ const rows = [
   createData('17 June, ', 'Monday', availableTime),
   createData('18 June, ', 'Tuesday', availableTime),
   createData('19 June, ', 'Wednesday', availableTime),
-  createData('20 June, ', 'Thrusday', availableTime),
+  createData('20 June, ', 'Thursday', availableTime),
   createData('21 June, ', 'Friday', availableTime),
   createData('22 June, ', 'Saturday', availableTime),
   createData('23 June, ', 'Sunday', availableTime),
@@ -95,25 +96,30 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
     setEndtTime(event.target.value);
   };
   return (
-    <>
+    <Container>
       <SettingHeader header={header} />
       <Box>
         <Box className={classes.heading}>
           <DateRangeIcon className={classes.icon} sx={{ mr: 3 }} />
           <Typography variant="h5" className={header} sx={{ fontWeight: 700, my: 5 }}>
-            17-23 june 2019
+            17-23 June 2019
           </Typography>
         </Box>
         <TableContainer>
-          <Table aria-label="simple table" sx={{ maxWidth: 800, border: 1, p: 5 }}>
+          <Table aria-label="simple table" className={classes.table}>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.date} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <TableCell>
-                    <span className={classes.dateTxt}>{row.date}</span>
-                    <span className={classes.dayTxt}>{row.day}</span>
+                <TableRow className={classes.tableRow} key={row.date}>
+                  <TableCell sx={{ border: 0 }}>
+                    <Box sx={{ display: 'flex' }}>
+                      {row.date === '17 June, ' && <FiberManualRecordIcon className={classes.icon} sx={{ mr: -3 }} />}
+                      <Box sx={{ ml: 5 }}>
+                        <span className={classes.dateTxt}>{row.date}</span>
+                        <span className={classes.dayTxt}>{row.day}</span>
+                      </Box>
+                    </Box>
                   </TableCell>
-                  <TableCell className={classes.cellAlignment} sx={{ display: 'flex' }}>
+                  <TableCell className={classes.cellAlignment} sx={{ display: 'flex', border: 0 }}>
                     <span className={classes.txt}>FROM</span>
                     <TextField
                       id="outlined-select-time"
@@ -122,7 +128,6 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                       onChange={handleStartTimeChange}
                       fullWidth
                     >
-                      <span className={classes.txt}>FROM</span>
                       {availableTime.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
                           <span className={classes.txt}>{option.label}</span>
@@ -151,7 +156,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
           </Table>
         </TableContainer>
       </Box>
-    </>
+    </Container>
   );
 };
 

@@ -9,7 +9,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   icon: {
     color: theme.palette.primary.main,
   },
-
+  table: {
+    width: '100%',
+    border: '1px solid RGB(0, 0, 0, .25)',
+    borderRadius: theme.shape.borderRadius,
+  },
+  tableRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottom: '1px solid RGB(0, 0, 0, .25)',
+  },
   dateTxt: {
     fontSize: 16,
     fontWeight: 700,
@@ -25,9 +35,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: '0 30px',
   },
   cellAlignment: {
-    displaly: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    border: 0,
   },
 }));
 export default useStyles;
