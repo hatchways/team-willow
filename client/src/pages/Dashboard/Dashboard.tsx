@@ -11,8 +11,6 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import CloseIcon from '@mui/icons-material/Close';
 import useStyles from './useStyles';
 
-//mock user data
-
 const users = [
   {
     id: 1,
