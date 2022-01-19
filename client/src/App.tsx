@@ -13,7 +13,6 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 import { Navbar } from './components/Navbar/Navbar';
 import Settings from './pages/Settings/Settings';
 import NotFound from './pages/NotFound/NotFound';
-import Availability from './pages/Settings/Availability/Availability';
 
 function App(): JSX.Element {
   return (

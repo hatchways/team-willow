@@ -2,7 +2,7 @@ import React from 'react';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { Box } from '@mui/system';
-import { Container, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import useStyles from './useStyles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -114,13 +114,13 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                     <Box sx={{ display: 'flex' }}>
                       {row.date === '17 June, ' && <FiberManualRecordIcon className={classes.icon} sx={{ mr: -3 }} />}
                       <Box sx={{ ml: 5 }}>
-                        <span className={classes.dateTxt}>{row.date}</span>
-                        <span className={classes.dayTxt}>{row.day}</span>
+                        <Typography className={classes.dateTxt}>{row.date}</Typography>
+                        <Typography className={classes.dayTxt}>{row.day}</Typography>
                       </Box>
                     </Box>
                   </TableCell>
                   <TableCell className={classes.cellAlignment} sx={{ display: 'flex', border: 0 }}>
-                    <span className={classes.txt}>FROM</span>
+                    <Typography className={classes.txt}>FROM</Typography>
                     <TextField
                       id="outlined-select-time"
                       select
@@ -130,11 +130,11 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                     >
                       {availableTime.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          <span className={classes.txt}>{option.label}</span>
+                          <Typography className={classes.txt}>{option.label}</Typography>
                         </MenuItem>
                       ))}
                     </TextField>
-                    <span className={classes.txt}>TO</span>
+                    <Typography className={classes.txt}>TO</Typography>
 
                     <TextField
                       id="outlined-select-time"
@@ -145,7 +145,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                     >
                       {availableTime.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          <span className={classes.txt}>{option.label}</span>
+                          <Typography className={classes.txt}>{option.label}</Typography>
                         </MenuItem>
                       ))}
                     </TextField>
