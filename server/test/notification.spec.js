@@ -7,16 +7,16 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe("Notifications model", function() {
-    let token;
+    let token, id;
     before(function() {
-        token = `token=${process.env.TOKEN}`
+        token = `token=${process.env.TOKEN}`;
     });
     it("should create notification document", function(done) {
         chai.request('http://localhost:3001')
         .post('/notifications/make')
         .set('Cookie', token)
         .send({
-            "type": "Booking",
+            "type": "Promo",
             "title": "Test Notification",
             "description": "Hello World!",
         })
@@ -26,6 +26,16 @@ describe("Notifications model", function() {
             done();
         })
     });
+    it("should get all notifications", function(done) {
+        chai.request('http://localhost:3001')
+        .get('/notifications/get-all')
+        .set('Cookie', token)
+        .end(function(err, res) {
+            id = res.body.success[0]._id;
+            expect(res.body.success.length).to.be.gte(1);
+            done();
+        })
+    })
     it("should get unread notifications", function(done) {
         chai.request('http://localhost:3001')
         .get('/notifications/get-unread')
@@ -37,22 +47,16 @@ describe("Notifications model", function() {
     })
     it("should mark notification as read", function(done) {
         chai.request('http://localhost:3001')
-        .put('/notifications/mark-red')
+        .put('/notifications/mark-read')
         .set('Cookie', token)
         .query({id})
+        .end(function(err, res) {
+            expect(res).to.have.status(201);
+            done();
+        })
     })
-    it("should get all notifications", function(done) {
-
-    })
-
     after(function(done) {
-        Notifications.deleteOne({ type: "Booking"});
         mongoose.disconnect();
-  
+        done();
     })
-    //Create new notification
-    //mark notification as read
-    //get all notifications
-    //get unread notifications
-    //
 })
