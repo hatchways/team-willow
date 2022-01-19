@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: '1px solid rgb(0,0,0,0.25)',
     borderRadius: theme.shape.borderRadius,
     padding: '0 25px',
-    // margin: '30px 0',
   },
   searchIcon: {
     color: theme.palette.primary.main,
