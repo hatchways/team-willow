@@ -15,8 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 interface AvailibilityProps {
   header: string;
 }
-function createData(name: string, day: string, availableTime: { value: string; label: string }[]) {
-  return { name, day, availableTime };
+function createData(date: string, day: string, availableTime: { value: string; label: string }[]) {
+  return { date, day, availableTime };
 }
 const availableTime = [
   {
@@ -100,19 +100,21 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
       <Box>
         <Box className={classes.heading}>
           <DateRangeIcon className={classes.icon} sx={{ mr: 3 }} />
-          <Typography variant="h5">17-23 june 2019</Typography>
+          <Typography variant="h5" className={header} sx={{ fontWeight: 700, my: 5 }}>
+            17-23 june 2019
+          </Typography>
         </Box>
         <TableContainer>
-          <Table sx={{ maxWidth: 650, border: 1 }} aria-label="simple table">
+          <Table aria-label="simple table" sx={{ maxWidth: 800, border: 1, p: 5 }}>
             <TableBody>
               {rows.map((row) => (
-                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component="th" scope="row">
-                    {row.name}
-                    {row.day}
+                <TableRow key={row.date} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <TableCell>
+                    <span className={classes.dateTxt}>{row.date}</span>
+                    <span className={classes.dayTxt}>{row.day}</span>
                   </TableCell>
-                  <TableCell align="left">
-                    From{' '}
+                  <TableCell className={classes.cellAlignment} sx={{ display: 'flex' }}>
+                    <span className={classes.txt}>FROM</span>
                     <TextField
                       id="outlined-select-time"
                       select
@@ -120,15 +122,15 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                       onChange={handleStartTimeChange}
                       fullWidth
                     >
+                      <span className={classes.txt}>FROM</span>
                       {availableTime.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          {option.label}
+                          <span className={classes.txt}>{option.label}</span>
                         </MenuItem>
                       ))}
                     </TextField>
-                  </TableCell>
-                  <TableCell align="left">
-                    To{' '}
+                    <span className={classes.txt}>TO</span>
+
                     <TextField
                       id="outlined-select-time"
                       select
@@ -138,7 +140,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                     >
                       {availableTime.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
-                          {option.label}
+                          <span className={classes.txt}>{option.label}</span>
                         </MenuItem>
                       ))}
                     </TextField>
