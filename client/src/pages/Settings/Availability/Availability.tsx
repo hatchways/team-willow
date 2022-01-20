@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
-import DateRangeIcon from '@mui/icons-material/DateRange';
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Container, ListItemText, Typography } from '@mui/material';
 import useStyles from './useStyles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,13 +10,18 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import Checkbox from '@mui/material/Checkbox';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface AvailibilityProps {
   header: string;
 }
-function createData(date: string, day: string, availableTime: { value: string; label: string }[]) {
-  return { date, day, availableTime };
+function createData(date: string, value: number, availableTime: { value: string; label: string }[]) {
+  return { date, availableTime };
 }
 const availableTime = [
   {
@@ -74,17 +78,26 @@ const availableTime = [
   },
 ];
 const rows = [
-  createData('17 June, ', 'Monday', availableTime),
-  createData('18 June, ', 'Tuesday', availableTime),
-  createData('19 June, ', 'Wednesday', availableTime),
-  createData('20 June, ', 'Thursday', availableTime),
-  createData('21 June, ', 'Friday', availableTime),
-  createData('22 June, ', 'Saturday', availableTime),
-  createData('23 June, ', 'Sunday', availableTime),
+  createData('SUN', 0, availableTime),
+  createData('MON', 1, availableTime),
+  createData('TUE', 2, availableTime),
+  createData('WED', 3, availableTime),
+  createData('THU', 4, availableTime),
+  createData('FRI', 5, availableTime),
+  createData('SAT', 6, availableTime),
 ];
 
 const Availability: React.FC<AvailibilityProps> = ({ header }) => {
   const classes = useStyles();
+  const [isChecked, setIsChecked] = useState(true);
+
+  const handleToggle = () => {
+    if (isChecked === true) {
+      setIsChecked(false);
+    } else {
+      setIsChecked(true);
+    }
+  };
 
   const [startTime, setStartTime] = React.useState('10 am');
   const [endTime, setEndtTime] = React.useState('10 pm');
@@ -96,59 +109,67 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
     setEndtTime(event.target.value);
   };
   return (
-    <>
+    <Container>
       <SettingHeader header={header} />
       <Box>
-        <Box className={classes.heading}>
-          <DateRangeIcon className={classes.icon} sx={{ mr: 3 }} />
-          <Typography variant="h5" className={header} sx={{ fontWeight: 700, my: 5 }}>
-            17-23 June 2019
-          </Typography>
-        </Box>
         <TableContainer>
           <Table aria-label="simple table" className={classes.table}>
             <TableBody>
+              <TableRow>
+                <Typography variant="h5" sx={{ fontWeight: 700, m: 4 }}>
+                  Set your weekly hours
+                </Typography>
+              </TableRow>
               {rows.map((row) => (
                 <TableRow className={classes.tableRow} key={row.date}>
                   <TableCell sx={{ border: 0 }}>
-                    <Box sx={{ display: 'flex' }}>
-                      {row.date === '17 June, ' && <FiberManualRecordIcon className={classes.icon} sx={{ mr: -3 }} />}
-                      <Box sx={{ ml: 5 }}>
-                        <Typography className={classes.dateTxt}>{row.date}</Typography>
-                        <Typography className={classes.dayTxt}>{row.day}</Typography>
-                      </Box>
-                    </Box>
+                    <ListItemButton role={undefined} dense>
+                      <ListItemIcon>
+                        <Checkbox checked={isChecked} onClick={handleToggle} edge="start" tabIndex={-1} disableRipple />
+                      </ListItemIcon>
+                      <ListItemText primary={<Typography sx={{ fontWeight: 700 }}>{row.date}</Typography>} />
+                    </ListItemButton>
                   </TableCell>
-                  <TableCell className={classes.cellAlignment} sx={{ display: 'flex', border: 0 }}>
-                    <Typography className={classes.txt}>FROM</Typography>
-                    <TextField
-                      id="outlined-select-time"
-                      select
-                      value={startTime}
-                      onChange={handleStartTimeChange}
-                      fullWidth
-                    >
-                      {availableTime.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          <Typography className={classes.txt}>{option.label}</Typography>
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                    <Typography className={classes.txt}>TO</Typography>
+                  <TableCell sx={{ display: 'flex', border: 0, alignItems: 'center', justifyContent: 'space-between' }}>
+                    {isChecked !== true ? (
+                      <Typography>Unavailable</Typography>
+                    ) : (
+                      <Box sx={{ display: 'flex', border: 0, alignItems: 'center', justifyContent: 'center' }}>
+                        <TextField
+                          id="outlined-select-time"
+                          select
+                          value={startTime}
+                          onChange={handleStartTimeChange}
+                          fullWidth
+                        >
+                          {availableTime.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              <Typography className={classes.txt}>{option.label}</Typography>
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                        <Typography sx={{ mx: 3 }}>-</Typography>
 
-                    <TextField
-                      id="outlined-select-time"
-                      select
-                      value={endTime}
-                      onChange={handleEndTimeChange}
-                      fullWidth
-                    >
-                      {availableTime.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          <Typography className={classes.txt}>{option.label}</Typography>
-                        </MenuItem>
-                      ))}
-                    </TextField>
+                        <TextField
+                          id="outlined-select-time"
+                          select
+                          value={endTime}
+                          onChange={handleEndTimeChange}
+                          fullWidth
+                        >
+                          {availableTime.map((option) => (
+                            <MenuItem key={option.value} value={option.value}>
+                              <Typography className={classes.txt}>{option.label}</Typography>
+                            </MenuItem>
+                          ))}
+                        </TextField>
+                        <DeleteIcon className={classes.icon} />
+                      </Box>
+                    )}
+                    <Box>
+                      <AddIcon />
+                      <ContentCopyIcon />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ))}
@@ -156,7 +177,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
           </Table>
         </TableContainer>
       </Box>
-    </>
+    </Container>
   );
 };
 
