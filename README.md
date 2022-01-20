@@ -40,3 +40,9 @@ This is a little description about your project.
 2. Dashboard. Here is a description about what a user can expect to see
 
 ![Dashboard](demo/images/dashboard.png)
+
+
+### Demo User Creation
+
+1. Provide all DEMO_* the environment variables as listed in sample.env
+2. in the project directory, run `node server/seeds/demoSeed.js` to create the demo User and Profile instance.

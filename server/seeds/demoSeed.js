@@ -1,45 +1,45 @@
 const User = require("../models/User");
 const Profile = require("../models/Profile");
-const generateToken = require("../utils/generateToken");
-// const { registerUser } = require("../controllers/auth");
+const mongoose = require('mongoose');
 
-const email = process.env.DEMO_USER_EMAIL;
-const name = process.env.DEMO_USER_NAME
-const password = process.env.DEMO_USER_PASSWORD
+const connection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+  } catch (error) {
+    throw new Error("Connection could not Established. Please try again.", error)
+  }
+}
 
-console.log("env vars are : ",email, name, password);
+connection();
 
-const emailExists = User.findOne({ email }, (error, data) => {
-    if (error) {
-        console.log(error);
+const createDemoUser = async () => {
+  const name =process.env.DEMO_USER_NAME;
+  const email =process.env.DEMO_USER_EMAIL;
+  const password =process.env.DEMO_USER_PASSWORD;
+
+  const userExist = await User.findOne({ email });
+  
+  if (userExist) {
+    console.error( "User Already Exist", userExist);
+  }
+
+  try {
+    const user = await User.create({ "name":name, "email":email, "password":password});
+    await Profile.create({
+      userId: user._id,
+      name:"Demo Account",
+      description: "Hello I am Demo User.",
+      gender: "male",
+      address: "1231 Long Island,",
+      telephone: 1231231234,
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      throw new Error("Duplicate Name while User creation!");
     } else {
-        console.log(data);
+      throw new Error("Something went wrong while creating User!", error);
     }
-});
-// console.log(emailExists);
-if (emailExists) {
-  throw new Error("A user with that email already exists");
+  }
+  console.log("You have successfully created Demo User.");
 }
-
-const userExists = User.findOne({ name });
-
-if (userExists) {
-  throw new Error("A user with that username already exists");
-}
-
-const user = User.create({
-  name,
-  email,
-  password
-});
-
-if (user) {
-  const profile = Profile.create({
-    userId: user._id,
-    name
-  });
-  const token = generateToken(user._id);
-
-} else {
-  throw new Error("Invalid user data");
-}
+createDemoUser();
