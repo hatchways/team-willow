@@ -1,4 +1,4 @@
-const Notification = require('../models/Notifications');
+const { Notification } = require('../models/Notifications');
 const asyncHandler = require("express-async-handler");
 
 exports.makeNotification = asyncHandler( async ( req, res ) => {

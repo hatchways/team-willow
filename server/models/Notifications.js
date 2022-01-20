@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 
+const ENUM_NOTIFICATIONS = ['Booking', 'Message', 'System', 'Promo'];
+
 const notificationsSchema = new mongoose.Schema({
     type: {
         type: String,
-        enum: ['Booking', 'Message', 'System', 'Promo'],
-        required: true,
+        enum: ENUM_NOTIFICATIONS,
+        required: [true, "Not a valid notification type."],
     },
     title: {
         type: String,
@@ -24,5 +26,7 @@ const notificationsSchema = new mongoose.Schema({
     }
 });
 
-module.exports = Notification = mongoose.model("notification", notificationsSchema);
-
+module.exports = {
+    ENUM_NOTIFICATIONS,
+    Notification: mongoose.model("notification", notificationsSchema)
+}
