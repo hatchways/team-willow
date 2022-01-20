@@ -16,12 +16,15 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import StarIcon from '@mui/icons-material/Star';
+import Button from '@mui/material/Button';
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 
 interface AvailibilityProps {
   header: string;
 }
 function createData(date: string, value: number, availableTime: { value: string; label: string }[]) {
-  return { date, availableTime };
+  return { date, value, availableTime };
 }
 const availableTime = [
   {
@@ -89,14 +92,20 @@ const rows = [
 
 const Availability: React.FC<AvailibilityProps> = ({ header }) => {
   const classes = useStyles();
-  const [isChecked, setIsChecked] = useState(true);
+  const [checked, setChecked] = React.useState([1]);
+  console.log(checked);
 
-  const handleToggle = () => {
-    if (isChecked === true) {
-      setIsChecked(false);
+  const handleToggle = (value: number) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
+
+    if (currentIndex === -1) {
+      newChecked.push(value);
     } else {
-      setIsChecked(true);
+      newChecked.splice(currentIndex, 1);
     }
+
+    setChecked(newChecked);
   };
 
   const [startTime, setStartTime] = React.useState('10 am');
@@ -112,6 +121,26 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
     <Container>
       <SettingHeader header={header} />
       <Box>
+        <Button variant="contained" sx={{ py: 2, borderRadius: 2, ml: 4 }}>
+          <LocalActivityIcon sx={{ mr: 2 }} />
+          Working hours
+        </Button>
+        <Button variant="outlined" sx={{ py: 2, borderRadius: 16, ml: 5 }}>
+          <AddIcon sx={{ mr: 2 }} /> New schedule
+        </Button>
+      </Box>
+      <Box sx={{ m: 4 }}>
+        <Typography variant="h5" sx={{ fontWeight: 700 }}>
+          Working hours
+        </Typography>
+        <Box sx={{ display: 'flex' }}>
+          <StarIcon sx={{ color: 'orange', mr: 1 }} />
+          <Typography variant="body1" color="text.secondary" display="inline-block">
+            default schedule
+          </Typography>
+        </Box>
+      </Box>
+      <Box>
         <TableContainer>
           <Table aria-label="simple table" className={classes.table}>
             <TableBody>
@@ -125,15 +154,19 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                   <TableCell sx={{ border: 0 }}>
                     <ListItemButton role={undefined} dense>
                       <ListItemIcon>
-                        <Checkbox checked={isChecked} onClick={handleToggle} edge="start" tabIndex={-1} disableRipple />
+                        <Checkbox
+                          checked={checked.indexOf(row.value) !== -1}
+                          onClick={handleToggle(row.value)}
+                          edge="start"
+                          tabIndex={-1}
+                          disableRipple
+                        />
                       </ListItemIcon>
                       <ListItemText primary={<Typography sx={{ fontWeight: 700 }}>{row.date}</Typography>} />
                     </ListItemButton>
                   </TableCell>
                   <TableCell sx={{ display: 'flex', border: 0, alignItems: 'center', justifyContent: 'space-between' }}>
-                    {isChecked !== true ? (
-                      <Typography>Unavailable</Typography>
-                    ) : (
+                    {checked.includes(row.value) ? (
                       <Box sx={{ display: 'flex', border: 0, alignItems: 'center', justifyContent: 'center' }}>
                         <TextField
                           id="outlined-select-time"
@@ -144,7 +177,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                         >
                           {availableTime.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
-                              <Typography className={classes.txt}>{option.label}</Typography>
+                              <Typography variant="body1">{option.label}</Typography>
                             </MenuItem>
                           ))}
                         </TextField>
@@ -159,16 +192,20 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
                         >
                           {availableTime.map((option) => (
                             <MenuItem key={option.value} value={option.value}>
-                              <Typography className={classes.txt}>{option.label}</Typography>
+                              <Typography variant="body1">{option.label}</Typography>
                             </MenuItem>
                           ))}
                         </TextField>
                         <DeleteIcon className={classes.icon} />
                       </Box>
+                    ) : (
+                      <Typography variant="body1" color="text.secondary" sx={{ mt: 2 }}>
+                        Unavailable
+                      </Typography>
                     )}
                     <Box>
                       <AddIcon />
-                      <ContentCopyIcon />
+                      <ContentCopyIcon sx={{ mx: 5 }} />
                     </Box>
                   </TableCell>
                 </TableRow>
