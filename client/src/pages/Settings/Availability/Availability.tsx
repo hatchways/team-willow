@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SettingHeader from '../../../components/SettingsHeader/SettingsHeader';
 import { Box } from '@mui/system';
-import { Container, ListItemText, Typography } from '@mui/material';
+import { ListItemText, Typography } from '@mui/material';
 import useStyles from './useStyles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -118,7 +118,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
     setEndtTime(event.target.value);
   };
   return (
-    <Container>
+    <>
       <SettingHeader header={header} />
       <Box>
         <Button variant="contained" sx={{ py: 2, borderRadius: 2, ml: 4 }}>
@@ -214,7 +214,7 @@ const Availability: React.FC<AvailibilityProps> = ({ header }) => {
           </Table>
         </TableContainer>
       </Box>
-    </Container>
+    </>
   );
 };
 
