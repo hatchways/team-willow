@@ -19,9 +19,9 @@ function DemoLogin(): JSX.Element {
     const fetchOptions: FetchOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
+      credentials: 'omit',
     };
-    return await fetch(`/auth/demo/login`, fetchOptions)
+    return await fetch(`/auth/demo`, fetchOptions)
       .then((res) => res.json())
       .then((data) => {
         if (data.error) {
@@ -30,7 +30,6 @@ function DemoLogin(): JSX.Element {
           updateSnackBarMessage(data.success);
           updateLoginContext(data.success);
         } else {
-          console.log({ data });
           updateSnackBarMessage('unexpected error occurred!');
         }
       })
@@ -70,8 +69,6 @@ export default function Login(): JSX.Element {
         updateLoginContext(data.success);
       } else {
         // should not get here from backend but this catch is for an unknown issue
-        console.error({ data });
-
         setSubmitting(false);
         updateSnackBarMessage('An unexpected error occurred. Please try again');
       }

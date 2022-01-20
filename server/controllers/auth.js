@@ -122,3 +122,40 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 
   res.send("You have successfully logged out");
 });
+
+
+exports.loginDemoUser = asyncHandler(async (req, res, next) => {
+  const name = process.env.DEMO_USER_NAME;
+  const email = process.env.DEMO_USER_EMAIL;
+  const password = process.env.DEMO_USER_PASSWORD;
+  
+  const user = await User.findOne({ email });
+  
+  if (user && (await user.matchPassword(password))) {
+    const token = generateToken(user._id);
+    const secondsInWeek = 604800;
+    
+    const profile = await Profile.findOne({ "userId":user._id });
+    
+    res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: secondsInWeek * 1000
+    });
+    
+    res.status(200).json({
+      success: {
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email
+        },
+        message: "You have successfully Logged In.",
+        token: token,
+        profile: profile,
+      }
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid email or password");
+  }  
+});

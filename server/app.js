@@ -14,6 +14,7 @@ const userRouter = require("./routes/user");
 const profileRouter = require('./routes/profile');
 
 const { json, urlencoded } = express;
+const port = 3001;
 
 connectDB();
 const app = express();
@@ -67,5 +68,9 @@ process.on("unhandledRejection", (err, promise) => {
   // Close server & exit process
   server.close(() => process.exit(1));
 });
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 module.exports = { app, server };
