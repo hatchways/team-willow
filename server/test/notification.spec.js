@@ -13,7 +13,7 @@ describe("Notifications model", function() {
     });
     it("should create notification document", function(done) {
         chai.request('http://localhost:3001')
-        .post('/notifications/make')
+        .post('/notifications/')
         .set('Cookie', token)
         .send({
             "type": "Promo",
@@ -28,7 +28,7 @@ describe("Notifications model", function() {
     });
     it("should get all notifications", function(done) {
         chai.request('http://localhost:3001')
-        .get('/notifications/get-all')
+        .get('/notifications/')
         .set('Cookie', token)
         .end(function(err, res) {
             id = res.body.success[0]._id;

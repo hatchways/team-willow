@@ -15,9 +15,15 @@ const {
     getUnreadNotifications 
 } = require('../controllers/notification'); 
 
-router.route("/make").post(protect, validateMakeNotification, validateNotification, makeNotification);
-router.route("/mark-read").put(protect, validateMarkReadNotification, validateNotification, markReadNotification);
-router.route("/get-all").get(protect, getAllNotifications);
-router.route("/get-unread").get(protect, getUnreadNotifications);
+router.route("/")
+    .all(protect)
+    .get(getAllNotifications)
+    .post(validateMakeNotification, validateNotification, makeNotification);
+router.route("/mark-read")
+    .all(protect)
+    .put(validateMarkReadNotification, validateNotification, markReadNotification);
+router.route("/get-unread")
+    .all(protect)
+    .get(getUnreadNotifications);
 
 module.exports = router;
