@@ -6,7 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "testPayment": "mocha ./test/payment.spec.js",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
