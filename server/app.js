@@ -12,6 +12,9 @@ const logger = require("morgan");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profileRouter = require('./routes/profile');
+const assetUtilityRouter = require('./routes/assetUtility');
+
+const port = 3001;
 
 const { json, urlencoded } = express;
 
@@ -45,6 +48,7 @@ app.use((req, res, next) => {
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/profile", profileRouter);
+app.use("/asset", assetUtilityRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
@@ -67,5 +71,9 @@ process.on("unhandledRejection", (err, promise) => {
   // Close server & exit process
   server.close(() => process.exit(1));
 });
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 module.exports = { app, server };
