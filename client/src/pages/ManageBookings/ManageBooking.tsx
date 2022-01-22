@@ -34,7 +34,7 @@ function Booking(): JSX.Element {
           </Typography>
         </Grid>
         <Typography variant="h6" className={classes.bookingAvatarStatus}>
-          ACCEPTED
+          Accepted
         </Typography>
       </Grid>
     </Grid>

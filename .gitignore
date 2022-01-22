@@ -18,8 +18,6 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-client/yarn.lock
-client/package-lock.json
 Pet Sitter Mocks-20220116T145733Z-001/
 
 #TODO add .env to your gitignore
