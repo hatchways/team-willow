@@ -27,20 +27,6 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
   const { image, name, occupation, rating, description, rate, city } = user;
 
   const classes = useStyles();
-  let ratingStar = 0;
-  if (rating === 5) {
-    ratingStar = 5;
-  } else if (rating === 4) {
-    ratingStar = 4;
-  } else if (rating === 3) {
-    ratingStar = 3;
-  } else if (rating === 2) {
-    ratingStar = 2;
-  } else if (rating === 1) {
-    ratingStar = 1;
-  } else {
-    ratingStar === ratingStar;
-  }
 
   return (
     <Grid item xs={12} sm={4} md={4}>
@@ -68,7 +54,7 @@ const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
           <Rating
             sx={{ my: 2 }}
             name="read-only"
-            value={ratingStar}
+            value={rating}
             readOnly
             emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
           />
