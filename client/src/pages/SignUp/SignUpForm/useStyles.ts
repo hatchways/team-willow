@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   submit: {
     margin: theme.spacing(3, 2, 2),
     padding: 10,
-    width: 160,
+    maxWidth: 160,
     height: 56,
     borderRadius: theme.shape.borderRadius,
     fontSize: 16,
