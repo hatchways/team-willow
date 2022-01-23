@@ -83,6 +83,7 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
               color="primary"
               className={classes.submit}
               disableElevation
+              fullWidth
             >
               {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
             </Button>
