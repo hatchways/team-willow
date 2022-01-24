@@ -11,6 +11,8 @@ import {
   Menu,
   MenuItem as DropdownMenuItem,
   styled,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { AccountType } from '../../types/AccountType';
 
@@ -82,11 +84,21 @@ const MenuItem: React.FC<{
 }> = ({ resource, item }) => {
   const classes = useStyles();
 
+  const theme = useTheme();
+  const toggoleNavbar = useMediaQuery(theme.breakpoints.down('sm'));
+
   return (
     <Grid key={resource} sx={{ textAlign: 'center' }} xs={2} justifySelf="flex-end" item>
-      <NavLink className={classes.navbarItem} to={resource}>
-        {item}
-      </NavLink>
+      {!toggoleNavbar && (
+        <NavLink className={classes.navbarItem} to={resource}>
+          {item}
+        </NavLink>
+      )}
+      {toggoleNavbar && (
+        <NavLink className={classes.mobileNavbarItem} to={resource}>
+          {item}
+        </NavLink>
+      )}
     </Grid>
   );
 };
