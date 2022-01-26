@@ -31,7 +31,7 @@ describe("Request model", function() {
         })
         .end(function(err, res) {
             expect(res).to.have.status(201);
-            done()
+            done();
         })
     });
   it("should get a request document", function(done) {
