@@ -7,6 +7,8 @@
   },
   "scripts": {
     "test": "mocha ./test/notification.spec.js -r dotenv/config",
+    "testPayment": "mocha ./test/payment.spec.js",
+    "testRequests": "mocha ./test/models.spec.js -r dotenv/config",
     "dev": "nodemon ./bin/www"
   },
   "dependencies": {
@@ -22,7 +24,8 @@
     "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
-    "socket.io": "^4.3.2"
+    "socket.io": "^4.3.2",
+    "stripe": "^8.199.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
