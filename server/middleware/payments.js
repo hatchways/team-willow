@@ -11,6 +11,7 @@ exports.validatePayment = [
 
 exports.validatePaymentId = [
     param('paymentId').notEmpty().bail().isString(),
+    body('paymentMethod').notEmpty().bail().isString(),
 ];
 
 exports.validatePaymentResult = (req, res, next) => {
