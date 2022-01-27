@@ -19,10 +19,10 @@ router.route("/")
     .all(protect)
     .get(getAllNotifications)
     .post(validateMakeNotification, validateNotification, makeNotification);
-router.route("/mark-read")
+router.route("/read")
     .all(protect)
     .put(validateMarkReadNotification, validateNotification, markReadNotification);
-router.route("/get-unread")
+router.route("/unread")
     .all(protect)
     .get(getUnreadNotifications);
 
