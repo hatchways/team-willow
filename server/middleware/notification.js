@@ -12,6 +12,7 @@ exports.validateMakeNotification = [
     body('type').notEmpty().bail().isString().custom(checkType),
     body('title').notEmpty().bail().isString(),
     body('description').notEmpty().bail().isString(),
+    body('metaData').notEmpty().bail().isObject(),
 ];
 
 exports.validateMarkReadNotification = [ query('id').notEmpty().isString() ];
