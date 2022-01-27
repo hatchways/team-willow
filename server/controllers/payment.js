@@ -28,9 +28,10 @@ exports.getPayment = asyncHandler( async (req, res, next) => {
     res.status(200).json({success: paymentIntent });
 });
 
-// GET "/:paymentId/pay"
+// POST "/:paymentId/pay"
 exports.confirmPaymentIntent = asyncHandler( async (req, res, next) => {
-    const paymentIntent = await stripe.paymentIntents.confirm(req.params.paymentId, { payment_method: 'pm_card_visa' });
+    const { paymentMethod } = req.body;
+    const paymentIntent = await stripe.paymentIntents.confirm(req.params.paymentId, { payment_method: paymentMethod });
     if (paymentIntent.status === 'succeeded') {
         await Payments.updateOne({ _id: req.paymentDoc.id }, { isPaid: true });
     }

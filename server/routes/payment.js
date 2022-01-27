@@ -19,16 +19,16 @@ const {
 
 router.route('/:paymentId/pay')
     .all(protect)
-    .get(validatePaymentId, validatePaymentResult, findPaymentOwner, confirmPaymentIntent)
+    .post(validatePaymentId, validatePaymentResult, findPaymentOwner, confirmPaymentIntent);
 router.route('/:paymentId/cancel')
     .all(protect)
-    .get(validatePaymentId, validatePaymentResult, findPaymentMerchant, cancelPaymentIntent)
+    .get(validatePaymentId, validatePaymentResult, findPaymentMerchant, cancelPaymentIntent);
 router.route('/:paymentId')
     .all(protect)
-    .get(validatePaymentId, validatePaymentResult, getPayment)
+    .get(validatePaymentId, validatePaymentResult, getPayment);
 router.route('/')
     .all(protect)
     .get(getPayments)
-    .post(validatePayment, validatePaymentResult, createPayment, createPaymentIntent)
+    .post(validatePayment, validatePaymentResult, createPayment, createPaymentIntent);
 
 module.exports = router;
