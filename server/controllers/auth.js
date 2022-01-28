@@ -125,9 +125,7 @@ exports.logoutUser = asyncHandler(async (req, res, next) => {
 
 
 exports.loginDemoUser = asyncHandler(async (req, res, next) => {
-  const name = process.env.DEMO_USER_NAME;
-  const email = process.env.DEMO_USER_EMAIL;
-  const password = process.env.DEMO_USER_PASSWORD;
+  const { email, password } = req.body;
   
   const user = await User.findOne({ email });
   
