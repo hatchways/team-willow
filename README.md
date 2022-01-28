@@ -44,5 +44,7 @@ This is a little description about your project.
 
 ### Demo User Creation
 
-1. Provide all DEMO_* the environment variables as listed in sample.env
-2. in the project directory, run `node server/seeds/demoSeed.js` to create the demo User and Profile instance.
+1. Copy all DEMO_* the environment variables as listed in sample.env into your .env file.
+2. In your .env file, create values for the DEMO_* variables.
+3. Seed the DB by running the script `npm run demoSeed` from within the server directory.
+4. Run `npm run demoTest` to test.

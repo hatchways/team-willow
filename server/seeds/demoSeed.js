@@ -1,30 +1,18 @@
+const colors = require("colors");
 const User = require("../models/User");
 const Profile = require("../models/Profile");
 const mongoose = require('mongoose');
+const connectDB = require('../db');
 
-const connection = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-  } catch (error) {
-    throw new Error("Connection could not Established. Please try again.", error)
-  }
-}
-
-connection();
+connectDB();
 
 const createDemoUser = async () => {
-  const name =process.env.DEMO_USER_NAME;
-  const email =process.env.DEMO_USER_EMAIL;
-  const password =process.env.DEMO_USER_PASSWORD;
-
-  const userExist = await User.findOne({ email });
-  
-  if (userExist) {
-    console.error( "User Already Exist", userExist);
-  }
-
+  const name = process.env.DEMO_USER_NAME;
+  const email = process.env.DEMO_USER_EMAIL;
+  const password = process.env.DEMO_USER_PASSWORD;
   try {
-    const user = await User.create({ "name":name, "email":email, "password":password});
+    await User.findOne({ name });
+    const user = await User.create({ name, email, password });
     await Profile.create({
       userId: user._id,
       name:"Demo Account",
@@ -33,13 +21,17 @@ const createDemoUser = async () => {
       address: "1231 Long Island,",
       telephone: 1231231234,
     });
+    console.log("DB seeded.");
+    
   } catch (error) {
     if (error.code === 11000) {
       throw new Error("Duplicate Name while User creation!");
     } else {
       throw new Error("Something went wrong while creating User!", error);
     }
+  } finally {
+    mongoose.disconnect();
   }
-  console.log("You have successfully created Demo User.");
 }
-createDemoUser();
+
+module.exports.createDemoUser = createDemoUser;
