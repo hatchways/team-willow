@@ -10,21 +10,14 @@ import { Box } from '@mui/material';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Profile } from '../../../../src/interface/Profile';
+
 interface UserDetailsProps {
-  user: {
-    id: number;
-    image: string;
-    name: string;
-    occupation: string;
-    rating: number;
-    description: string;
-    rate: number;
-    city: string;
-  };
+  profile: Profile;
 }
 
-const UserDetails: React.FC<UserDetailsProps> = ({ user }) => {
-  const { image, name, occupation, rating, description, rate, city } = user;
+const UserDetails: React.FC<UserDetailsProps> = ({ profile }) => {
+  const { image, name, occupation, rating, description, rate, city } = profile;
 
   const classes = useStyles();
 

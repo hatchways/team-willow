@@ -24,7 +24,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
   const [loggedInUser, setLoggedInUser] = useState<User | null | undefined>();
   const [profile, setProfile] = useState();
   const history = useHistory();
-  console.log(profile);
 
   const updateLoginContext = useCallback(
     (data: AuthApiDataSuccess) => {
