@@ -21,6 +21,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   navbarLogo: {
-    width: 180,
+    width: '100%',
+    maxWidth: 180,
+  },
+  mobileNavbarItem: {
+    color: theme.palette.grey[900],
+    fontWeight: 700,
+    textDecoration: 'none',
+    transition: 'color 120ms ease-in-out',
+    '&:hover': {
+      color: theme.palette.primary.main,
+    },
   },
 }));
