@@ -40,3 +40,11 @@ This is a little description about your project.
 2. Dashboard. Here is a description about what a user can expect to see
 
 ![Dashboard](demo/images/dashboard.png)
+
+
+### Demo User Creation
+
+1. Copy all DEMO_* the environment variables as listed in sample.env into your .env file.
+2. In your .env file, create values for the DEMO_* variables.
+3. Seed the DB by running the script `npm run demoSeed` from within the server directory.
+4. Run `npm run demoTest` to test.
