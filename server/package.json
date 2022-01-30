@@ -6,7 +6,9 @@
     "test": "test"
   },
   "scripts": {
-    "testPayment": "mocha ./test/payment.spec.js",
+    "testPayment": "mocha ./test/payment.spec.js -r dotenv/config",
+    "testConfirmIntent": "mocha ./test/confirmPaymentIntents.spec.js -r dotenv/config",
+    "testCancelIntent": "mocha ./test/cancelPaymentIntents.spec.js -r dotenv/config",
     "testRequests": "mocha ./test/models.spec.js -r dotenv/config",
     "dev": "nodemon ./bin/www"
   },

@@ -15,8 +15,8 @@ const PaymentSchema = new mongoose.Schema({
     },
     rate: {
         type: Number,
-        default: 100,
-        min: 100,
+        default: 1,
+        min: 1,
         max: 10000,
     },
     hoursOfService: {
@@ -32,7 +32,17 @@ const PaymentSchema = new mongoose.Schema({
     },
     customerId: {
         type: String,
-        required: true,
+    },
+    paymentIntentsId: {
+        type: String,
+    },
+    isPaid: {
+        type: Boolean,
+        default: false,
+    },
+    isCanceled: {
+        type: Boolean,
+        default: false,
     }
 })
 
