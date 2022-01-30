@@ -10,19 +10,19 @@ const {
 } = require('../controllers/payment');
 const {
     validatePayment,
-    findPaymentOwner,
-    findPaymentMerchant,
-    validatePaymentId,
+    findPayment,
+    validateConfirmPayment,
     createPayment,
-    validatePaymentResult
+    validatePaymentResult,
+    validatePaymentId
 } = require('../middleware/payments');
 
 router.route('/:paymentId/pay')
     .all(protect)
-    .post(validatePaymentId, validatePaymentResult, findPaymentOwner, confirmPaymentIntent);
+    .post(validateConfirmPayment, validatePaymentResult, findPayment, confirmPaymentIntent);
 router.route('/:paymentId/cancel')
     .all(protect)
-    .get(validatePaymentId, validatePaymentResult, findPaymentMerchant, cancelPaymentIntent);
+    .get(validatePaymentId, validatePaymentResult, findPayment, cancelPaymentIntent);
 router.route('/:paymentId')
     .all(protect)
     .get(validatePaymentId, validatePaymentResult, getPayment);

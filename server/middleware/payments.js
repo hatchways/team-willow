@@ -1,17 +1,20 @@
 const { body, param, validationResult } = require('express-validator');
 const asyncHandler = require("express-async-handler");
-const Payments = require('../models/Payment');
+const Payment = require('../models/Payment');
 
-//validators
 exports.validatePayment = [
     body('sitterId').notEmpty().bail().isString(),
     body('rate').notEmpty().bail().isNumeric(),
     body('hoursOfService').notEmpty().bail().isNumeric(),
 ];
 
-exports.validatePaymentId = [
+exports.validateConfirmPayment = [
     param('paymentId').notEmpty().bail().isString(),
     body('paymentMethod').notEmpty().bail().isString(),
+];
+
+exports.validatePaymentId = [
+    this.validateConfirmPayment[0],
 ];
 
 exports.validatePaymentResult = (req, res, next) => {
@@ -22,22 +25,15 @@ exports.validatePaymentResult = (req, res, next) => {
     next();
 }
 
-//DB Queries
-exports.findPaymentOwner = asyncHandler(async (req, res, next) => {
-    const payment = await Payments.findOne({ userId: req.user.id, paymentIntentsId: req.params.paymentId});
+exports.findPayment = asyncHandler(async (req, res, next) => {
+    const payment = await Payment.findOne({ userId: req.user.id, paymentIntentsId: req.params.paymentId});
     req.paymentDoc = payment;
     next();
 });
 
-exports.findPaymentMerchant = asyncHandler(async (req, res, next) => {
-    const payment = await Payments.findOne({ userId: req.user.id, paymentIntentsId: req.params.paymentId}).exec();
-    //TODO: Update query to search for sitterId
-    req.paymentDoc = payment;
-    next();
-})
 exports.createPayment = asyncHandler( async (req, res, next) => {
     const { sitterId, rate, hoursOfService } = req.body;
-    const payment = new Payments({
+    const payment = new Payment({
         userId: req.user.id,
         sitterId,
         rate,
@@ -45,11 +41,5 @@ exports.createPayment = asyncHandler( async (req, res, next) => {
     });
     await payment.save();
     req.newPayment = payment;
-    console.log("Payment Document created.");
     next()
 });
-
-exports.verifySitterType = asyncHandler( async (req, res, next)=> {
-    //TODO: verify req.user.id is a sitter and not an owner.
-})
-

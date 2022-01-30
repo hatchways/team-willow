@@ -47,7 +47,7 @@ describe('Payments', function() {
         .set('Cookie', token)
         .end(function(err ,res) {
             expect(res).to.have.status(200);
-            expect(res.body.success.length).to.be.gte(1);
+            expect(res.body.payments.length).to.be.gte(1);
             done();
         })
     })
