@@ -6,6 +6,7 @@
     "test": "test"
   },
   "scripts": {
+    "testAvailabilitySchema": "mocha ./test/availability.spec.js -r dotenv/config",
     "testPayment": "mocha ./test/payment.spec.js",
     "testRequests": "mocha ./test/models.spec.js -r dotenv/config",
     "dev": "nodemon ./bin/www"
