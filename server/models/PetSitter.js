@@ -4,10 +4,12 @@ const Profile = require('./Profile');
 const PetSitterSchema = new mongoose.Schema({
     stripeAccountId: {
         type: String,
+        required: true,
     },
     availabilityId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Availability',
+        required: true,
     },
     activatedAvailabilitySchedule: {
         type: mongoose.Schema.Types.ObjectId,
