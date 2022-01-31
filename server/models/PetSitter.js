@@ -18,7 +18,7 @@ const PetSitterSchema = new mongoose.Schema({
     rate: {
         type: Number,
         default: 100,
-        min: 100,
+        min: 1,
     },
 });
 
