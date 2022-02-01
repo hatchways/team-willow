@@ -81,7 +81,8 @@ const menuItems = [
 const MenuItem: React.FC<{
   resource: string;
   item: string | JSX.Element;
-}> = ({ resource, item }) => {
+  canView: any;
+}> = ({ resource, item, canView }) => {
   const classes = useStyles();
 
   const theme = useTheme();
@@ -89,20 +90,48 @@ const MenuItem: React.FC<{
 
   return (
     <>
-      {!toggoleNavbar && (
-        <Grid key={resource} sx={{ textAlign: 'center' }} xs={2} justifySelf="flex-end" item>
-          <NavLink className={classes.navbarItem} to={resource}>
-            {item}
-          </NavLink>
-        </Grid>
+      {canView?.includes('pet_sitter') ? (
+        <>
+          {!toggoleNavbar && (
+            <Grid key={resource} sx={{ textAlign: 'center' }} xs={2} justifySelf="flex-end" item>
+              <NavLink className={classes.navbarItem} to={resource}>
+                {item}
+              </NavLink>
+            </Grid>
+          )}
+        </>
+      ) : (
+        <>
+          {!toggoleNavbar && (
+            <Grid key={resource} sx={{ textAlign: 'center' }} xs={2} justifySelf="flex-end" item>
+              <NavLink className={classes.navbarItem} to={resource}>
+                {item}
+              </NavLink>
+            </Grid>
+          )}
+        </>
       )}
 
-      {toggoleNavbar && (
-        <Grid key={resource} sx={{ display: 'flex', flexDirection: 'column' }} item>
-          <NavLink className={classes.mobileNavbarItem} to={resource}>
-            {item}
-          </NavLink>
-        </Grid>
+      {canView?.includes('pet_sitter') ? (
+        <>
+          {toggoleNavbar && (
+            <Grid key={resource} justifySelf="flex-end" item>
+              <NavLink className={classes.navbarItem} to={resource}>
+                {item}
+              </NavLink>
+            </Grid>
+          )}
+        </>
+      ) : (
+        <>
+          {toggoleNavbar && (
+            <Grid key={resource} justifySelf="flex-end" item>
+              <NavLink className={classes.navbarItem} to={resource}>
+                {item}
+              </NavLink>
+            </Grid>
+          )}
+        </>
       )}
     </>
   );
