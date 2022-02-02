@@ -14,7 +14,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({ header, children }) =
         maxWidth: 800,
         minHeight: 700,
         margin: '0 auto',
-        padding: 10,
+        padding: '80px 20px',
         backgroundColor: '#fff',
         borderRadius: 2,
         boxShadow:
@@ -25,7 +25,7 @@ const AuthPageWrapper: React.FC<AuthPageWrapperProps> = ({ header, children }) =
       <AuthPageHeader header={header} />
       <Box
         sx={{
-          width: 350,
+          maxWidth: 350,
           margin: '0 auto',
         }}
       >
